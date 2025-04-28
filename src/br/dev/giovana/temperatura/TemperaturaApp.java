@@ -1,9 +1,15 @@
 package br.dev.giovana.temperatura;
 
+import br.dev.giovana.temperatura.gui.TelaConversor;
+
 public class TemperaturaApp {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		TelaConversor tela = new TelaConversor();
+		tela.criarTela();
+		
+		
 
 	}
 
