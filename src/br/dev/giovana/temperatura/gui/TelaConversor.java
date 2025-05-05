@@ -22,12 +22,13 @@ public class TelaConversor {
 	private JButton btnFahrenheit;
 	private JButton btnKelvin;
 
-	private Font labels = new Font("Arial", Font.BOLD, 13 );
+	private Font labels = new Font("Arial", Font.BOLD, 13);
 	private Color labelsColor = new Color(178, 23, 241);
-	
-	
-	public void criarTela() {
+	private Font labelfont = new Font("Arial", Font.BOLD, 16);
 
+	public void criarTela() {
+		
+		//Criando um Jframe
 		JFrame tela = new JFrame();
 
 		Dimension tamanho = new Dimension();
@@ -38,75 +39,81 @@ public class TelaConversor {
 		tela.setLayout(null);
 		tela.setLocationRelativeTo(null);
 		tela.setResizable(false);
-		
-		//criando um Jlabel e um JtextField para Celsius
-		
+
+		// criando um Jlabel e um JtextField para Celsius
+
 		labelCelsius = new JLabel();
 		labelCelsius.setFont(labels);
 		labelCelsius.setText("Temperatura em graus Celsius: ");
-		labelCelsius.setBounds(30, 10, 300, 30);
-		
+		labelCelsius.setBounds(40, 10, 300, 30);
+
 		txtCelsius = new JTextField();
 		txtCelsius.setHorizontalAlignment(JTextField.RIGHT);
-		txtCelsius.setBounds(30, 45, 290, 30);
+		txtCelsius.setBounds(40, 45, 260, 30);
 
-	    //criando botões
+		// criando os botões
 		btnFahrenheit = new JButton();
 		btnFahrenheit.setText("Fahrenheit");
 		btnFahrenheit.setFont(labels);
-        btnFahrenheit.setForeground(labelsColor);
-        btnFahrenheit.setBounds(180, 90, 120, 30);
-        
-        btnKelvin = new JButton();
-        btnKelvin.setText("Kelvin");
-        btnKelvin.setFont(labels);
-        btnKelvin.setForeground(labelsColor);
-        btnKelvin.setBounds(40, 90, 120, 30);     
-        
-        //label do resultado
-        labelResultado = new JLabel();
-        labelResultado.setText(null);
-        labelResultado.setBounds(60, 120, 90, 30);
-        
-        //adicionando a tela 
-        tela.getContentPane().add(labelCelsius);
-        tela.getContentPane().add(txtCelsius);
-        tela.getContentPane().add(btnKelvin);
-        tela.getContentPane().add(btnFahrenheit);
-        tela.getContentPane().add(labelResultado);     
-        
-        
-        // Adicionando um ouvinte de ação (listener) ao botão Fahrenheit
-        btnFahrenheit.addActionListener(new ActionListener() {
-			
+		btnFahrenheit.setForeground(labelsColor);
+		btnFahrenheit.setBounds(180, 90, 120, 30);
+
+		btnKelvin = new JButton();
+		btnKelvin.setText("Kelvin");
+		btnKelvin.setFont(labels);
+		btnKelvin.setForeground(labelsColor);
+		btnKelvin.setBounds(40, 90, 120, 30);
+
+		// Criando um label do resultado
+		labelResultado = new JLabel();
+		labelResultado.setText(null);
+		labelResultado.setFont(labelfont);
+		labelResultado.setBounds(150, 130, 90, 30);
+
+		// Adicionando os componentes a tela
+		tela.getContentPane().add(labelCelsius);
+		tela.getContentPane().add(txtCelsius);
+		tela.getContentPane().add(btnKelvin);
+		tela.getContentPane().add(btnFahrenheit);
+		tela.getContentPane().add(labelResultado);
+
+		// Adicionando um ouvinte de ação (listener) ao botão Fahrenheit
+		btnFahrenheit.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
-		        Temperatura temperatura = new Temperatura();
-		        
-		        double celsius = Double.parseDouble(txtCelsius.getText());
-		        temperatura.setCelsius(celsius);
-		        String kelvin = String.valueOf(temperatura.converterParaKelvin());
-		        labelResultado.setText(kelvin);
-		        
+
+				Temperatura temperatura = new Temperatura();
+
+				double celsius = Double.parseDouble(txtCelsius.getText());
+				temperatura.setCelsius(celsius);
+				String fahrenheit = String.valueOf(temperatura.converterParaFahrenheit());
+				labelResultado.setText(fahrenheit);
+
 			}
 		});
-         
-        btnKelvin.addActionListener(new ActionListener() {
-			
+		//Adicionando um ouvinte de ação (listener) ao botão Kelvin
+		btnKelvin.addActionListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+
+				Temperatura temperatura = new Temperatura();
+
+				double celsius = Double.parseDouble(txtCelsius.getText());
+				temperatura.setCelsius(celsius);
+				String kelvin = String.valueOf(temperatura.converterParaKelvin());
+				labelResultado.setText(kelvin);
 				
 				
-				
+
 			}
 		});
-        
-        
-        // ultima linha 
-        tela.setVisible(true);
+
+		// Ultima linha (torna a tela visivel)
+		tela.setVisible(true);
 	}
 
 }
